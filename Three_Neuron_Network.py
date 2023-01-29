@@ -112,6 +112,7 @@ def calc_dVdt(V, A_modulation, g_internal_gating, E_rev_gate_matrix, S_modulatio
 def dStatedt(t, state, params):
     """
     Run this inside ODEInt or SciPy's integrate. Contains vectorized ODEs for 3 NaKL neurons.
+    
     :param t:
     :param state:
     :param params:
