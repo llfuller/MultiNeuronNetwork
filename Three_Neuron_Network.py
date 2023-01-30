@@ -112,7 +112,7 @@ def calc_dVdt(V, A_modulation, g_internal_gating, E_rev_gate_matrix, S_modulatio
 def dStatedt(t, state, params):
     """
     Run this inside ODEInt or SciPy's integrate. Contains vectorized ODEs for 3 NaKL neurons.
-    
+
     :param t:
     :param state:
     :param params:
@@ -281,8 +281,9 @@ state_initial = 0.1*np.ones((16))
 # state_initial[4:12] = 0.0 # gating variables
 # state_initial[12:16] = 0.0 # synapse variables
 
-# Solve system
-sol = scipy.integrate.solve_ivp(fun=dStatedt, t_span=[t_start,t_stop], y0=state_initial, t_eval=times_array, args=(params,))
+# Solve system (using higher order RK and stricter error tolerance for higher dimensional systems)
+sol = scipy.integrate.solve_ivp(fun=dStatedt, t_span=[t_start,t_stop], y0=state_initial, t_eval=times_array,
+                                args=(params,), atol=1e-11,rtol=1e-11,method="DOP853")
 
 
 # Plotting
