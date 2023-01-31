@@ -106,7 +106,7 @@ def calc_dVdt(V, A_modulation, g_internal_gating, E_rev_gate_matrix, S_modulatio
     #
     # test_multiplication =  np.multiply(S_modulation, E_rev_syn_matrix - V[None,:])
     # test_2_multi = np.multiply(g_syn, test_multiplication)
-    dVdt_synapse = np.sum(np.multiply(g_syn, np.multiply(S_modulation, E_rev_syn_matrix - V[None,:])),axis=1)
+    dVdt_synapse = np.sum(np.multiply(g_syn, np.multiply(S_modulation, E_rev_syn_matrix - V[:,None])),axis=1)
     return dVdt_internal + dVdt_synapse # TODO: Remove the zero from this line
 
 def dStatedt(t, state, params):
