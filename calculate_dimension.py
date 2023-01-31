@@ -86,8 +86,11 @@ plt.ylabel("log(C)")
 plt.title(f"L63: C(epsilon) for N={num_datapoints} Points")
 plt.show()
 
-slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(epsilon_arr,C_arr)
-print(f"Slope is around {slope}")
+slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(np.log(epsilon_arr),np.log(C_arr))
+print(f"Slope is reportedly around {slope}")
 
 program_end_time = time.time()
 print(f"Program ran in {program_end_time-program_start_time} seconds")
+
+#L63 yielded dimension 2.0707, close to the 2.06 we expect from Hausdorf dimension
+# (resource for statement of Hausdorf L63 dimension: https://web.math.ucsb.edu/~jhateley/paper/lorenz.pdf)
