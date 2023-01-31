@@ -108,7 +108,7 @@ def calc_dVdt(V, A_modulation, g_internal_gating, E_rev_gate_matrix, S_modulatio
     :return: dVdt: dim (# neurons)
     """
     dVdt_internal = np.dot(np.multiply(A_modulation, E_rev_gate_matrix - V[:, None]), g_internal_gating)
-    dVdt_synapse = np.sum(np.multiply(g_syn, np.multiply(S_modulation, E_rev_syn_matrix - V[None, :])), axis=1)
+    dVdt_synapse = np.sum(np.multiply(g_syn, np.multiply(S_modulation, E_rev_syn_matrix - V[:, None])), axis=1)
     return dVdt_internal + dVdt_synapse  # TODO: Remove the zero from this line
 
 
